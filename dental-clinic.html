@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="lacivert">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="doc-title">NovaSmile Dental Studio | Sample Design / Live Demo — Clinic Website &amp; Booking App</title>
+  <meta name="description" id="doc-desc" content="NovaSmile Dental Studio (Sample Design / Demo) — Fast, mobile-first dental clinic website and iOS/Android patient booking preview built by Human Project." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' rx='4' fill='%23047857'/></svg>" />
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --surface-soft: #f1f5f9;
+      --ink: #0f172a;
+      --muted: #475569;
+      --border: #e2e8f0;
+      --primary: #0f172a;
+      --primary-contrast: #ffffff;
+      --accent: #047857;
+      --accent-dark: #065f46;
+      --accent-soft: #ecfdf5;
+      --accent-border: #a7f3d0;
+      --hero-grad: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      --radius: 16px;
+      --shadow: 0 10px 28px rgba(15, 23, 42, 0.08);
+      --sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    }
+
+    html[data-theme="kehribar"] {
+      --bg: #fafaf9;
+      --surface: #ffffff;
+      --surface-soft: #f5f5f4;
+      --ink: #18181b;
+      --muted: #52525b;
+      --border: #e4e4e7;
+      --primary: #18181b;
+      --primary-contrast: #ffffff;
+      --accent: #b45309;
+      --accent-dark: #92400e;
+      --accent-soft: #fffbeb;
+      --accent-border: #fde68a;
+      --hero-grad: linear-gradient(135deg, #18181b 0%, #292524 100%);
+      --shadow: 0 10px 28px rgba(24, 24, 27, 0.08);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button, input, select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 18px;
+    }
+
+    /* Demo Notice Banner */
+    .demo-banner {
+      background: #fef3c7;
+      color: #78350f;
+      border-bottom: 1px solid #fcd34d;
+      font-size: 0.85rem;
+      font-weight: 700;
+      padding: 8px 0;
+    }
+
+    .demo-banner-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px 16px;
+    }
+
+    .demo-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #78350f;
+      color: #ffffff;
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    /* Top Bar */
+    .top-bar {
+      background: var(--primary);
+      color: var(--primary-contrast);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      font-size: 0.875rem;
+    }
+
+    .top-bar-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px 16px;
+      padding: 10px 0;
+    }
+
+    .brand-line {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+    }
+
+    .status-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #10b981;
+      flex-shrink: 0;
+    }
+
+    .top-controls {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .theme-btn {
+      background: rgba(255, 255, 255, 0.1);
+      color: #f8fafc;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      border-radius: 999px;
+      padding: 7px 14px;
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+
+    .theme-btn[aria-pressed="true"] {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #ffffff;
+    }
+
+    /* Navigation */
+    .site-nav {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 0;
+    }
+
+    .nav-logo {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--primary);
+      letter-spacing: -0.01em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    .nav-cta {
+      background: var(--accent);
+      color: #ffffff;
+      padding: 10px 16px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      white-space: nowrap;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 28px 0 24px;
+    }
+
+    .hero-panel {
+      background: var(--hero-grad);
+      color: #ffffff;
+      border-radius: var(--radius);
+      padding: 32px;
+      box-shadow: var(--shadow);
+      display: grid;
+      grid-template-columns: 1.25fr 0.9fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .cat-pill {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      color: #ffffff;
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .demo-pill {
+      display: inline-block;
+      background: #fef3c7;
+      color: #78350f;
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 800;
+    }
+
+    .hero h1 {
+      margin: 0 0 12px;
+      font-size: clamp(1.65rem, 3.2vw, 2.4rem);
+      line-height: 1.18;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-desc {
+      margin: 0 0 20px;
+      color: #e2e8f0;
+      font-size: 1.02rem;
+      max-width: 58ch;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 18px;
+      font-size: 0.9rem;
+      color: #e2e8f0;
+      margin-bottom: 22px;
+    }
+
+    .hero-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn-accent {
+      background: var(--accent);
+      color: #ffffff;
+      border: none;
+      border-radius: 10px;
+      padding: 12px 20px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn-ghost {
+      background: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      border-radius: 10px;
+      padding: 12px 18px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Phone Mockup Card */
+    .phone-card {
+      background: #ffffff;
+      color: var(--ink);
+      border-radius: 22px;
+      padding: 18px;
+      border: 4px solid rgba(255, 255, 255, 0.22);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+    }
+
+    .phone-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--muted);
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 12px;
+    }
+
+    .phone-app-head {
+      background: var(--accent-soft);
+      border: 1px solid var(--accent-border);
+      border-radius: 12px;
+      padding: 12px;
+      margin-bottom: 12px;
+    }
+
+    .phone-app-title {
+      font-weight: 800;
+      font-size: 0.98rem;
+      color: var(--primary);
+    }
+
+    .phone-app-sub {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .phone-select-label {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--muted);
+      margin-bottom: 5px;
+    }
+
+    .phone-select {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 10px;
+      background: var(--surface-soft);
+      color: var(--ink);
+      font-size: 0.86rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .phone-slots {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .slot-chip {
+      border: 1px solid var(--border);
+      background: var(--surface-soft);
+      color: var(--ink);
+      border-radius: 8px;
+      padding: 9px 6px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .slot-chip[aria-pressed="true"] {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #ffffff;
+    }
+
+    .phone-submit {
+      width: 100%;
+      background: var(--primary);
+      color: #ffffff;
+      border: none;
+      border-radius: 10px;
+      padding: 11px 14px;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .phone-feedback {
+      margin-top: 8px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--accent-dark);
+      min-height: 1.2em;
+    }
+
+    /* Sections */
+    .section {
+      padding: 20px 0;
+    }
+
+    .section-head {
+      margin-bottom: 16px;
+    }
+
+    .section-head h2 {
+      margin: 0 0 6px;
+      font-size: 1.4rem;
+      color: var(--primary);
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+    }
+
+    .card-badge {
+      display: inline-block;
+      background: var(--accent-soft);
+      color: var(--accent-dark);
+      border: 1px solid var(--accent-border);
+      border-radius: 8px;
+      padding: 4px 10px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 1.05rem;
+      color: var(--primary);
+    }
+
+    .card p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .price-tag {
+      margin-top: 12px;
+      padding-top: 10px;
+      border-top: 1px solid var(--border);
+      font-size: 0.9rem;
+      font-weight: 800;
+      color: var(--accent-dark);
+    }
+
+    /* Contact Card */
+    .contact-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .contact-row {
+      background: var(--surface-soft);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 14px;
+    }
+
+    .contact-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .contact-value {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-top: 2px;
+      word-break: break-word;
+    }
+
+    /* Customizer Panel */
+    .customizer {
+      background: var(--surface);
+      border: 1px dashed var(--accent);
+      border-radius: var(--radius);
+      padding: 20px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .field label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 5px;
+    }
+
+    .field input, .field select {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 12px;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 0.92rem;
+    }
+
+    .footer {
+      padding: 28px 0 36px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.86rem;
+      border-top: 1px solid var(--border);
+      margin-top: 24px;
+    }
+
+    .footer-links {
+      margin-top: 8px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+      font-weight: 700;
+      color: var(--accent-dark);
+    }
+
+    @media (max-width: 860px) {
+      .hero-panel,
+      .grid-3,
+      .grid-2,
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-panel {
+        padding: 22px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="demo-banner">
+    <div class="container demo-banner-inner">
+      <span>SAMPLE DESIGN / LIVE DEMO (Örnek Tasarım / Demo) — Fictional clinic created for Human Project portfolio</span>
+      <a href="./index.html" class="demo-back-link">Back to All Demos &amp; Portfolio</a>
+    </div>
+  </div>
+
+  <div class="top-bar">
+    <div class="container top-bar-inner">
+      <div class="brand-line">
+        <span class="status-dot" aria-hidden="true"></span>
+        <span>Fast Clinic Website + iOS/Android Patient Booking Preview</span>
+      </div>
+      <div class="top-controls" role="group" aria-label="Color Theme Switcher">
+        <button type="button" class="theme-btn" id="btn-theme-lacivert" aria-pressed="true">Theme 1: Navy &amp; Emerald</button>
+        <button type="button" class="theme-btn" id="btn-theme-kehribar" aria-pressed="false">Theme 2: Charcoal &amp; Amber</button>
+      </div>
+    </div>
+  </div>
+
+  <header class="site-nav">
+    <div class="container nav-inner">
+      <a href="#top" class="nav-logo" data-var="isletmeAdi">NovaSmile Dental Studio</a>
+      <nav class="nav-links" aria-label="Page Sections">
+        <a href="#services">Treatments &amp; Pricing</a>
+        <a href="#mobile-app">Patient App</a>
+        <a href="#contact">Clinic Details</a>
+        <a href="#customize">Live Customizer</a>
+      </nav>
+      <a href="#contact" class="nav-cta" id="nav-call-btn">Book Demo Visit</a>
+    </div>
+  </header>
+
+  <main class="container" id="top">
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="hero-panel">
+        <div>
+          <div class="pill-row">
+            <span class="cat-pill" data-var="kategori">Dental Clinic &amp; Healthcare</span>
+            <span class="demo-pill">Sample Design / Demo</span>
+          </div>
+          <h1 id="hero-heading"><span data-var="isletmeAdi">NovaSmile Dental Studio</span> — Rank Locally, Convert Mobile Patients Faster</h1>
+          <p class="hero-desc" id="hero-summary">
+            Help patients searching for checkups, whitening, or emergency dental care find your clinic in seconds. Built with instant click-to-call, clear pricing in USD, and an interactive iOS/Android booking workflow.
+          </p>
+          <div class="hero-meta">
+            <span>Demo Phone: <strong data-var="telefon">+1 555 019 2834</strong></span>
+            <span>Demo Location: <strong data-var="adres">120 Demo Avenue, Suite 400 — Sample Location</strong></span>
+          </div>
+          <div class="hero-actions">
+            <a class="btn-accent" id="hero-tel-link" href="tel:+15550192834">Call Clinic (<span data-var="telefon">+1 555 019 2834</span>)</a>
+            <a class="btn-ghost" href="#mobile-app">Explore Patient App</a>
+          </div>
+        </div>
+
+        <aside class="phone-card" aria-label="iOS and Android Patient Booking Preview">
+          <div class="phone-top">
+            <span>iOS / Android Preview</span>
+            <span>Sample Demo</span>
+          </div>
+          <div class="phone-app-head">
+            <div class="phone-app-title" data-var="isletmeAdi">NovaSmile Dental Studio</div>
+            <div class="phone-app-sub" data-var="kategori">Dental Clinic &amp; Healthcare · Quick Booking</div>
+          </div>
+          <label class="phone-select-label" for="demo-service-select">Select Treatment (Sample Menu)</label>
+          <select id="demo-service-select" class="phone-select">
+            <option value="Preventive Checkup &amp; 3D X-Ray">Preventive Checkup &amp; 3D X-Ray — 95 USD</option>
+            <option value="Laser Whitening Session">Laser Whitening Session — 240 USD</option>
+            <option value="Emergency Dental Consultation">Emergency Dental Consultation — 110 USD</option>
+          </select>
+          <div class="phone-slots" role="group" aria-label="Appointment Slot">
+            <button type="button" class="slot-chip" aria-pressed="true">10:00 AM</button>
+            <button type="button" class="slot-chip" aria-pressed="false">02:30 PM</button>
+            <button type="button" class="slot-chip" aria-pressed="false">05:00 PM</button>
+          </div>
+          <button type="button" class="phone-submit" id="demo-book-btn">Request Demo Appointment</button>
+          <div class="phone-feedback" id="demo-feedback" role="status" aria-live="polite"></div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="services" aria-labelledby="services-heading">
+      <div class="section-head">
+        <h2 id="services-heading">Sample Treatments &amp; Conversion Modules</h2>
+        <p>Core clinical service cards structured for local search visibility and high mobile conversion in <span data-var="isletmeAdi">NovaSmile Dental Studio</span>.</p>
+      </div>
+      <div class="grid-3">
+        <article class="card">
+          <span class="card-badge">Preventive Care</span>
+          <h3 id="svc-1-title">Checkups &amp; 3D Digital X-Ray</h3>
+          <p id="svc-1-desc">Clear diagnostic overview, transparent pricing before the visit, and one-tap appointment requests from any smartphone.</p>
+          <div class="price-tag">Sample Rate: 95 USD</div>
+        </article>
+        <article class="card">
+          <span class="card-badge">Cosmetic Dentistry</span>
+          <h3 id="svc-2-title">Whitening &amp; Smile Alignment</h3>
+          <p id="svc-2-desc">Clean comparison blocks that highlight treatment timelines and encourage high-intent patients to call or book online.</p>
+          <div class="price-tag">Sample Rate: 240 USD</div>
+        </article>
+        <article class="card">
+          <span class="card-badge">iOS &amp; Android</span>
+          <h3 id="svc-3-title">Patient Recall &amp; Follow-Up App</h3>
+          <p id="svc-3-desc">Automated six-month hygiene reminders, post-procedure care notes, and urgent click-to-call triage for returning patients.</p>
+          <div class="price-tag">Emergency Consult: 110 USD</div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="mobile-app" aria-labelledby="app-heading">
+      <div class="grid-2">
+        <article class="card">
+          <span class="card-badge">Web + Mobile Together</span>
+          <h2 id="app-heading" style="margin-top:0;font-size:1.3rem;">Why Pair a Fast Clinic Site with a Patient App?</h2>
+          <p style="margin-bottom:12px;">
+            New patients discover your practice on Google Search and Maps, where sub-second mobile load times build immediate clinical trust. Returning patients re-book hygiene visits inside your lightweight iOS and Android companion experience.
+          </p>
+          <p>
+            This page is a fictional Sample Design / Demo (Örnek Tasarım / Demo) built by Human Project with zero external CSS/JS dependencies for 90+ mobile Lighthouse scores.
+          </p>
+        </article>
+
+        <article class="card" id="contact">
+          <span class="card-badge">Sample Clinic Profile</span>
+          <h2 style="margin-top:0;font-size:1.3rem;">Demo Practice Details (Fictional)</h2>
+          <div class="contact-list">
+            <div class="contact-row">
+              <div class="contact-label">Sample Clinic Name</div>
+              <div class="contact-value" data-var="isletmeAdi">NovaSmile Dental Studio</div>
+            </div>
+            <div class="contact-row">
+              <div class="contact-label">Specialty</div>
+              <div class="contact-value" data-var="kategori">Dental Clinic &amp; Healthcare</div>
+            </div>
+            <div class="contact-row">
+              <div class="contact-label">Demo Phone</div>
+              <div class="contact-value"><a id="contact-tel-link" href="tel:+15550192834" data-var="telefon">+1 555 019 2834</a></div>
+            </div>
+            <div class="contact-row">
+              <div class="contact-label">Demo Address</div>
+              <div class="contact-value" data-var="adres">120 Demo Avenue, Suite 400 — Sample Location</div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="customize" aria-labelledby="customizer-heading">
+      <div class="customizer">
+        <div class="section-head" style="margin-bottom:8px;">
+          <h2 id="customizer-heading">Instant Clinic Preview Customizer (1-Minute Demo)</h2>
+          <p>Edit the fields below or pass URL query parameters (<code>?ad=...&amp;telefon=...&amp;adres=...&amp;tema=kehribar</code>) to tailor this demo live for any prospective clinic.</p>
+        </div>
+        <div class="form-grid">
+          <div class="field">
+            <label for="inp-ad">Clinic Name</label>
+            <input id="inp-ad" type="text" value="NovaSmile Dental Studio" />
+          </div>
+          <div class="field">
+            <label for="inp-kat">Specialty Category</label>
+            <select id="inp-kat">
+              <option value="Dental Clinic &amp; Healthcare">Dental Clinic &amp; Healthcare</option>
+              <option value="Cosmetic &amp; Implant Dentistry">Cosmetic &amp; Implant Dentistry</option>
+              <option value="Pediatric Dental Practice">Pediatric Dental Practice</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="inp-tel">Demo Phone</label>
+            <input id="inp-tel" type="tel" value="+1 555 019 2834" />
+          </div>
+          <div class="field">
+            <label for="inp-adr">Demo Address</label>
+            <input id="inp-adr" type="text" value="120 Demo Avenue, Suite 400 — Sample Location" />
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div><strong data-var="isletmeAdi">NovaSmile Dental Studio</strong> · Sample Design / Demo (Örnek Tasarım / Demo) · Human Project</div>
+      <div class="footer-links">
+        <a href="./index.html">Main Portfolio Hub</a>
+        <a href="./kuafor-guzellik.html">Beauty Studio Demo (TR)</a>
+        <a href="./oto-servis.html">Auto Service Demo (TR)</a>
+        <a href="mailto:humanoidproject01@gmail.com">humanoidproject01@gmail.com</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const DEFAULTS = {
+      isletmeAdi: "NovaSmile Dental Studio",
+      kategori: "Dental Clinic & Healthcare",
+      telefon: "+1 555 019 2834",
+      adres: "120 Demo Avenue, Suite 400 — Sample Location",
+      tema: "lacivert"
+    };
+
+    function applyTheme(tema) {
+      const selected = tema === "kehribar" ? "kehribar" : "lacivert";
+      document.documentElement.setAttribute("data-theme", selected);
+      document.getElementById("btn-theme-lacivert").setAttribute("aria-pressed", String(selected === "lacivert"));
+      document.getElementById("btn-theme-kehribar").setAttribute("aria-pressed", String(selected === "kehribar"));
+    }
+
+    function applyVariables(data) {
+      document.querySelectorAll("[data-var]").forEach(el => {
+        const key = el.getAttribute("data-var");
+        if (data[key]) el.textContent = data[key];
+      });
+      const cleanTel = data.telefon.replace(/[^0-9+]/g, "");
+      const telHref = "tel:" + (cleanTel || data.telefon);
+      document.getElementById("hero-tel-link").setAttribute("href", telHref);
+      document.getElementById("contact-tel-link").setAttribute("href", telHref);
+      document.getElementById("nav-call-btn").setAttribute("href", telHref);
+      document.title = data.isletmeAdi + " | Sample Design / Live Demo — Clinic Website & Booking App";
+    }
+
+    const params = new URLSearchParams(window.location.search);
+    const activeData = {
+      isletmeAdi: params.get("ad") || DEFAULTS.isletmeAdi,
+      kategori: params.get("kategori") || DEFAULTS.kategori,
+      telefon: params.get("telefon") || DEFAULTS.telefon,
+      adres: params.get("adres") || DEFAULTS.adres,
+      tema: params.get("tema") || DEFAULTS.tema
+    };
+
+    document.getElementById("inp-ad").value = activeData.isletmeAdi;
+    document.getElementById("inp-tel").value = activeData.telefon;
+    document.getElementById("inp-adr").value = activeData.adres;
+    applyTheme(activeData.tema);
+    applyVariables(activeData);
+
+    document.getElementById("btn-theme-lacivert").addEventListener("click", () => applyTheme("lacivert"));
+    document.getElementById("btn-theme-kehribar").addEventListener("click", () => applyTheme("kehribar"));
+
+    ["inp-ad", "inp-kat", "inp-tel", "inp-adr"].forEach(id => {
+      document.getElementById(id).addEventListener("input", () => {
+        activeData.isletmeAdi = document.getElementById("inp-ad").value.trim() || DEFAULTS.isletmeAdi;
+        activeData.kategori = document.getElementById("inp-kat").value;
+        activeData.telefon = document.getElementById("inp-tel").value.trim() || DEFAULTS.telefon;
+        activeData.adres = document.getElementById("inp-adr").value.trim() || DEFAULTS.adres;
+        applyVariables(activeData);
+      });
+    });
+
+    let selectedSlot = "10:00 AM";
+    document.querySelectorAll(".slot-chip").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".slot-chip").forEach(b => b.setAttribute("aria-pressed", "false"));
+        btn.setAttribute("aria-pressed", "true");
+        selectedSlot = btn.textContent.trim();
+      });
+    });
+
+    document.getElementById("demo-book-btn").addEventListener("click", () => {
+      const treatment = document.getElementById("demo-service-select").value;
+      document.getElementById("demo-feedback").textContent =
+        "Demo request simulated for " + activeData.isletmeAdi + ": " + treatment + " at " + selectedSlot + ".";
+    });
+  </script>
+</body>
+</html>

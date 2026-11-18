@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="lacivert">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Human Project — Web, Mobil Uygulama, Hız Optimizasyonu &amp; Canlı Demolar</title>
+  <meta name="description" content="Human Project portföyü ve canlı demo vitrini: hızlı web sitesi, yüksek dönüşümlü landing page, iOS/Android mobil uygulama, Core Web Vitals optimizasyonu ve açık kaynak GitHub PR katkıları." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' rx='4' fill='%23047857'/></svg>" />
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --surface-soft: #f1f5f9;
+      --ink: #0f172a;
+      --muted: #475569;
+      --border: #e2e8f0;
+      --primary: #0f172a;
+      --primary-contrast: #ffffff;
+      --accent: #047857;
+      --accent-dark: #065f46;
+      --accent-soft: #ecfdf5;
+      --accent-border: #a7f3d0;
+      --hero-grad: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      --radius: 16px;
+      --shadow: 0 10px 28px rgba(15, 23, 42, 0.08);
+      --sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    }
+
+    html[data-theme="kehribar"] {
+      --bg: #fafaf9;
+      --surface: #ffffff;
+      --surface-soft: #f5f5f4;
+      --ink: #18181b;
+      --muted: #52525b;
+      --border: #e4e4e7;
+      --primary: #18181b;
+      --primary-contrast: #ffffff;
+      --accent: #b45309;
+      --accent-dark: #92400e;
+      --accent-soft: #fffbeb;
+      --accent-border: #fde68a;
+      --hero-grad: linear-gradient(135deg, #18181b 0%, #292524 100%);
+      --shadow: 0 10px 28px rgba(24, 24, 27, 0.08);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+      cursor: pointer;
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 18px;
+    }
+
+    /* Üst Çubuk */
+    .top-bar {
+      background: var(--primary);
+      color: var(--primary-contrast);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      font-size: 0.875rem;
+    }
+
+    .top-bar-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px 16px;
+      padding: 10px 0;
+    }
+
+    .brand-line {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+    }
+
+    .status-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #10b981;
+      flex-shrink: 0;
+    }
+
+    .top-controls {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .theme-btn {
+      background: rgba(255, 255, 255, 0.1);
+      color: #f8fafc;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      border-radius: 999px;
+      padding: 7px 14px;
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+
+    .theme-btn[aria-pressed="true"] {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #ffffff;
+    }
+
+    /* Navigasyon */
+    .site-nav {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 0;
+    }
+
+    .nav-logo {
+      font-size: 1.08rem;
+      font-weight: 800;
+      color: var(--primary);
+      letter-spacing: -0.01em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    .nav-cta {
+      background: var(--accent);
+      color: #ffffff;
+      padding: 10px 16px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      white-space: nowrap;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 28px 0 24px;
+    }
+
+    .hero-panel {
+      background: var(--hero-grad);
+      color: #ffffff;
+      border-radius: var(--radius);
+      padding: 32px;
+      box-shadow: var(--shadow);
+      display: grid;
+      grid-template-columns: 1.3fr 0.85fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .cat-pill {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      color: #ffffff;
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .hero h1 {
+      margin: 0 0 12px;
+      font-size: clamp(1.65rem, 3.2vw, 2.45rem);
+      line-height: 1.18;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-desc {
+      margin: 0 0 18px;
+      color: #e2e8f0;
+      font-size: 1.01rem;
+      max-width: 60ch;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn-accent {
+      background: var(--accent);
+      color: #ffffff;
+      border: none;
+      border-radius: 10px;
+      padding: 12px 20px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn-ghost {
+      background: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      border-radius: 10px;
+      padding: 12px 18px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .summary-card {
+      background: #ffffff;
+      color: var(--ink);
+      border-radius: 18px;
+      padding: 20px;
+      border: 4px solid rgba(255, 255, 255, 0.22);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+    }
+
+    .summary-card h2 {
+      margin: 0 0 10px;
+      font-size: 1.05rem;
+      color: var(--primary);
+    }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .metric-box {
+      background: var(--accent-soft);
+      border: 1px solid var(--accent-border);
+      border-radius: 12px;
+      padding: 10px 12px;
+    }
+
+    .metric-val {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--accent-dark);
+    }
+
+    .metric-lbl {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    .stack-note {
+      font-size: 0.84rem;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    /* Bölümler */
+    .section {
+      padding: 22px 0;
+    }
+
+    .section-head {
+      margin-bottom: 16px;
+    }
+
+    .section-head h2 {
+      margin: 0 0 6px;
+      font-size: 1.42rem;
+      color: var(--primary);
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-badge {
+      display: inline-block;
+      align-self: flex-start;
+      background: var(--accent-soft);
+      color: var(--accent-dark);
+      border: 1px solid var(--accent-border);
+      border-radius: 8px;
+      padding: 4px 10px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .demo-tag {
+      display: inline-block;
+      align-self: flex-start;
+      background: #fef3c7;
+      color: #78350f;
+      border: 1px solid #fcd34d;
+      border-radius: 8px;
+      padding: 4px 10px;
+      font-size: 0.76rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 1.06rem;
+      color: var(--primary);
+    }
+
+    .card p {
+      margin: 0;
+      font-size: 0.91rem;
+      color: var(--muted);
+    }
+
+    .card-meta {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+      font-size: 0.86rem;
+      font-weight: 700;
+      color: var(--primary);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .card-link-btn {
+      margin-top: 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--accent);
+      color: #ffffff;
+      padding: 11px 16px;
+      border-radius: 10px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    /* PR Listesi */
+    .pr-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .pr-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .pr-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .pr-repo {
+      font-weight: 800;
+      font-size: 0.96rem;
+      color: var(--primary);
+    }
+
+    .pr-stack {
+      font-size: 0.76rem;
+      font-weight: 700;
+      background: var(--surface-soft);
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 3px 9px;
+      border-radius: 999px;
+    }
+
+    .pr-desc {
+      margin: 0;
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    .pr-url {
+      margin-top: 4px;
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: var(--accent-dark);
+      word-break: break-word;
+    }
+
+    /* İletişim Kutusu */
+    .contact-panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .contact-actions {
+      display: grid;
+      gap: 10px;
+    }
+
+    .contact-btn-primary {
+      background: var(--accent);
+      color: #ffffff;
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-weight: 700;
+      font-size: 0.92rem;
+      text-align: center;
+    }
+
+    .contact-btn-secondary {
+      background: var(--surface-soft);
+      color: var(--primary);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-weight: 700;
+      font-size: 0.92rem;
+      text-align: center;
+    }
+
+    .footer {
+      padding: 28px 0 36px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.86rem;
+      border-top: 1px solid var(--border);
+      margin-top: 24px;
+    }
+
+    @media (max-width: 860px) {
+      .hero-panel,
+      .grid-4,
+      .grid-3,
+      .grid-2,
+      .pr-list,
+      .contact-panel {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-panel {
+        padding: 22px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-bar">
+    <div class="container top-bar-inner">
+      <div class="brand-line">
+        <span class="status-dot" aria-hidden="true"></span>
+        <span>Human Project · Canlı Örnek İşler &amp; Portföy Vitrini (TR / EN)</span>
+      </div>
+      <div class="top-controls" role="group" aria-label="Renk Teması Seçimi">
+        <button type="button" class="theme-btn" id="btn-theme-lacivert" aria-pressed="true">Tema 1: Lacivert &amp; Zümrüt</button>
+        <button type="button" class="theme-btn" id="btn-theme-kehribar" aria-pressed="false">Tema 2: Antrasit &amp; Kehribar</button>
+      </div>
+    </div>
+  </div>
+
+  <header class="site-nav">
+    <div class="container nav-inner">
+      <a href="#ust" class="nav-logo">Human Project</a>
+      <nav class="nav-links" aria-label="Ana Menü">
+        <a href="#hizmetler">Hizmetler / Services</a>
+        <a href="#demolar">3 Canlı Demo</a>
+        <a href="#github-pr">GitHub PR'lar</a>
+        <a href="#iletisim">İletişim</a>
+      </nav>
+      <a href="mailto:humanoidproject01@gmail.com" class="nav-cta">E-posta Gönder</a>
+    </div>
+  </header>
+
+  <main class="container" id="ust">
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="hero-panel">
+        <div>
+          <span class="cat-pill">Web · Landing Page · iOS/Android · Core Web Vitals</span>
+          <h1 id="hero-heading">Hızlı Web Siteleri, Mobil Uygulamalar ve Canlı Örnek İşler</h1>
+          <p class="hero-desc">
+            Human Project; yerel ve küresel işletmeler için 48 saatte hızlı tanıtım siteleri, iOS/Android randevu uygulamaları ve Lighthouse Mobil 90+ hız optimizasyonu sunar. Aşağıda etkileşimli demo sitelerimizi ve açık kaynak GitHub pull request katkılarımızı inceleyebilirsiniz.
+          </p>
+          <div class="hero-actions">
+            <a class="btn-accent" href="#demolar">3 Canlı Demoyu İncele</a>
+            <a class="btn-ghost" href="#github-pr">Doğrulanabilir GitHub PR'lar</a>
+          </div>
+        </div>
+
+        <aside class="summary-card" aria-label="Özet Mühendislik Verileri">
+          <h2>Ölçülebilir Teslimat Özeti</h2>
+          <div class="metric-grid">
+            <div class="metric-box">
+              <div class="metric-val">90+ Mobil</div>
+              <div class="metric-lbl">Lighthouse Hedefi</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-val">48 Saat</div>
+              <div class="metric-lbl">Ön İzleme &amp; Landing</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-val">3 Sektör</div>
+              <div class="metric-lbl">Canlı Etkileşimli Demo</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-val">8 Açık PR</div>
+              <div class="metric-lbl">github.com/Semihzx</div>
+            </div>
+          </div>
+          <p class="stack-note">
+            Teknoloji yığını: React, Next.js, TypeScript, Node.js, Python, Flutter, React Native, PostgreSQL, SQLite, Playwright &amp; Lighthouse.
+          </p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="hizmetler" aria-labelledby="services-heading">
+      <div class="section-head">
+        <h2 id="services-heading">Human Project Hizmetleri / Engineering Services</h2>
+        <p>Hem yerel işletmeler hem de uluslararası uzaktan yazılım ekipleri için doğrudan teslim edilen 4 ana hizmet alanı.</p>
+      </div>
+      <div class="grid-4">
+        <article class="card">
+          <span class="card-badge">Web Sitesi / Custom Web Apps</span>
+          <h3>Kurumsal Web Sitesi &amp; Full-Stack Uygulama</h3>
+          <p>React, Next.js, TypeScript, Node.js ve Python ile uçtan uca tasarlanan, mobil uyumlu ve arama motoru dostu modern web siteleri ve web uygulamaları.</p>
+          <div class="card-meta">
+            <span>Teslim: Kapsama göre</span>
+            <span>Başlangıç: 180 – 250 USD</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <span class="card-badge">Landing Page / 48h Delivery</span>
+          <h3>48 Saatte Yüksek Dönüşümlü Landing Page</h3>
+          <p>Web sitesi olmayan veya mobilde bozuk açılan işletmeler için tek dokunuşla telefon, WhatsApp ve online randevu odaklı hızlı tanıtım sayfaları.</p>
+          <div class="card-meta">
+            <span>Teslim: 48 Saat (2 İş Günü)</span>
+            <span>6.500 TL / 180 – 250 USD</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <span class="card-badge">iOS &amp; Android Mobile Apps</span>
+          <h3>iOS ve Android Mobil Uygulama</h3>
+          <p>Flutter ve React Native ile randevu, sipariş takibi, hatırlatma bildirimleri ve müşteri sadakat ekranları sunan çift platform mobil uygulamalar.</p>
+          <div class="card-meta">
+            <span>Platform: iOS &amp; Android</span>
+            <span>Özel Kapsam / USD</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <span class="card-badge">Core Web Vitals / Speed</span>
+          <h3>Web Sitesi Hız Optimizasyonu (Lighthouse 90+)</h3>
+          <p>Görsel sıkıştırma, render engelleyen kod temizliği, LCP/CLS düşürme ve teknik SEO düzenlemesi ile işlem öncesi/sonrası gerçek hız raporu.</p>
+          <div class="card-meta">
+            <span>Teslim: 2 – 3 İş Günü</span>
+            <span>4.500 TL / 120 – 180 USD</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="demolar" aria-labelledby="demos-heading">
+      <div class="section-head">
+        <h2 id="demos-heading">Canlı İşletme Demoları (Örnek Tasarım / Demo)</h2>
+        <p>Aşağıdaki 3 sayfanın tamamı kurgusal işletmelerle hazırlanmış <strong>örnek tasarım / canlı demo</strong> çalışmasıdır; gerçek işletme adı veya logo içermez.</p>
+      </div>
+      <div class="grid-3">
+        <article class="card">
+          <span class="demo-tag">Örnek Tasarım / Demo · TR</span>
+          <h3>Lumina Saç &amp; Güzellik Stüdyosu</h3>
+          <p>Kuaför ve güzellik merkezleri için Türkçe tanıtım sayfası, örnek TL/USD hizmet fiyatları, iOS/Android randevu simülatörü ve canlı metin uyarlama paneli.</p>
+          <div class="card-meta">
+            <span>Sektör: Kuaför / Güzellik</span>
+            <span>Dil: Türkçe (TR)</span>
+          </div>
+          <a class="card-link-btn" href="./kuafor-guzellik.html">Kuaför Demosunu Aç (TR)</a>
+        </article>
+
+        <article class="card">
+          <span class="demo-tag">Sample Design / Demo · EN</span>
+          <h3>NovaSmile Dental Studio</h3>
+          <p>İngilizce diş kliniği vitrini; tedavi planları, USD cinsinden şeffaf örnek fiyatlar, 3D muayene vurgusu ve etkileşimli hasta randevu uygulaması ön izlemesi.</p>
+          <div class="card-meta">
+            <span>Sector: Dental Clinic</span>
+            <span>Language: English (EN)</span>
+          </div>
+          <a class="card-link-btn" href="./dental-clinic.html">Open Dental Clinic Demo (EN)</a>
+        </article>
+
+        <article class="card">
+          <span class="demo-tag">Örnek Tasarım / Demo · TR</span>
+          <h3>Vektör Oto Servis &amp; Bakım Merkezi</h3>
+          <p>Oto tamir ve bakım servisleri için Türkçe ön izleme; acil yol yardım tek tık arama, bakım paketleri, servis geçmişi mobil ekranı ve tema değiştirici.</p>
+          <div class="card-meta">
+            <span>Sektör: Oto Servis</span>
+            <span>Dil: Türkçe (TR)</span>
+          </div>
+          <a class="card-link-btn" href="./oto-servis.html">Oto Servis Demosunu Aç (TR)</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="github-pr" aria-labelledby="pr-heading">
+      <div class="section-head">
+        <h2 id="pr-heading">Doğrulanabilir Açık Kaynak GitHub PR'ları (github.com/Semihzx)</h2>
+        <p>Gerçek açık kaynak depolara gönderilmiş, otomatik test ve CI kontrolleriyle doğrulanabilir pull request bağlantılarımız.</p>
+      </div>
+      <div class="pr-list">
+        <article class="pr-item">
+          <div class="pr-head">
+            <span class="pr-repo">onyx-dot-app/onyx#18056</span>
+            <span class="pr-stack">Python · Connector &amp; Tests</span>
+          </div>
+          <p class="pr-desc">Jira Service Management entegrasyonu: Cloud bearer-token &amp; Data Center PAT doğrulaması, sayfalı ticket/yorum alımı ve 9 birim testi.</p>
+          <a class="pr-url" href="https://github.com/onyx-dot-app/onyx/pull/18056" target="_blank" rel="noopener noreferrer">github.com/onyx-dot-app/onyx/pull/18056</a>
+        </article>
+
+        <article class="pr-item">
+          <div class="pr-head">
+            <span class="pr-repo">tscircuit/matchpack#302</span>
+            <span class="pr-stack">TypeScript · All CI Passing</span>
+          </div>
+          <p class="pr-desc">65 dosyada otomatik layout hizalama ve çakışma giderme düzenlemesi; test, type-check, format-check ve Vercel kontrolleri başarılı.</p>
+          <a class="pr-url" href="https://github.com/tscircuit/matchpack/pull/302" target="_blank" rel="noopener noreferrer">github.com/tscircuit/matchpack/pull/302</a>
+        </article>
+
+        <article class="pr-item">
+          <div class="pr-head">
+            <span class="pr-repo">highlight/highlight#10688</span>
+            <span class="pr-stack">React · TypeScript</span>
+          </div>
+          <p class="pr-desc">12 dosyada Integrations arayüzü yenilemesi: kategori sekmeleri, anlık arama, durum rozetleri, sıralama ve 14 birim testi.</p>
+          <a class="pr-url" href="https://github.com/highlight/highlight/pull/10688" target="_blank" rel="noopener noreferrer">github.com/highlight/highlight/pull/10688</a>
+        </article>
+
+        <article class="pr-item">
+          <div class="pr-head">
+            <span class="pr-repo">arakoodev/EdgeChains#859</span>
+            <span class="pr-stack">TypeScript · Node.js</span>
+          </div>
+          <p class="pr-desc">Bağımsız çoklu sağlayıcı LLM SmartRouter: 5 yönlendirme stratejisi, circuit-breaker bekleme süresi, fallback ve 14 HTTP testi.</p>
+          <a class="pr-url" href="https://github.com/arakoodev/EdgeChains/pull/859" target="_blank" rel="noopener noreferrer">github.com/arakoodev/EdgeChains/pull/859</a>
+        </article>
+
+        <article class="pr-item">
+          <div class="pr-head">
+            <span class="pr-repo">outerbase/starbasedb#355</span>
+            <span class="pr-stack">TypeScript · SQLite DO</span>
+          </div>
+          <p class="pr-desc">Büyük veritabanları için akışkan (streaming) ve sayfalı SQL dump dışa aktarma modülü.</p>
+          <a class="pr-url" href="https://github.com/outerbase/starbasedb/pull/355" target="_blank" rel="noopener noreferrer">github.com/outerbase/starbasedb/pull/355</a>
+        </article>
+
+        <article class="pr-item">
+          <div class="pr-head">
+            <span class="pr-repo">outerbase/starbasedb#356</span>
+            <span class="pr-stack">TypeScript · Vitest</span>
+          </div>
+          <p class="pr-desc">Tüm metriklerde test kapsamını artırma çalışması: 205 test ve yüzde 93,67 ifade kapsamı.</p>
+          <a class="pr-url" href="https://github.com/outerbase/starbasedb/pull/356" target="_blank" rel="noopener noreferrer">github.com/outerbase/starbasedb/pull/356</a>
+        </article>
+
+        <article class="pr-item">
+          <div class="pr-head">
+            <span class="pr-repo">outerbase/starbasedb#357</span>
+            <span class="pr-stack">TypeScript · CDC Webhooks</span>
+          </div>
+          <p class="pr-desc">Change Data Capture (CDC) webhook teslimat mekanizması ve doğrulama test paketi.</p>
+          <a class="pr-url" href="https://github.com/outerbase/starbasedb/pull/357" target="_blank" rel="noopener noreferrer">github.com/outerbase/starbasedb/pull/357</a>
+        </article>
+
+        <article class="pr-item">
+          <div class="pr-head">
+            <span class="pr-repo">getdozer/dozer-samples#150</span>
+            <span class="pr-stack">Python · FastAPI · AI</span>
+          </div>
+          <p class="pr-desc">Dozer REST entegrasyonlu, yerel vektör benzerliği ve 12 pytest testli tam yığın LLM bankacılık sohbet örneği.</p>
+          <a class="pr-url" href="https://github.com/getdozer/dozer-samples/pull/150" target="_blank" rel="noopener noreferrer">github.com/getdozer/dozer-samples/pull/150</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="iletisim" aria-labelledby="contact-heading">
+      <div class="contact-panel">
+        <div>
+          <span class="card-badge">Doğrudan İletişim / Direct Contact</span>
+          <h2 id="contact-heading" style="margin:0 0 8px;font-size:1.38rem;color:var(--primary);">İşletmeniz İçin Ücretsiz Ön İzleme veya Proje Görüşmesi</h2>
+          <p style="margin:0;color:var(--muted);font-size:0.94rem;">
+            Web sitenizi hızlandırmak, 48 saatte yeni bir tanıtım sayfası hazırlamak veya uzaktan yazılım ekibinize tam yığın mühendislik desteği almak için doğrudan bize ulaşın.
+          </p>
+        </div>
+        <div class="contact-actions">
+          <a class="contact-btn-primary" href="mailto:humanoidproject01@gmail.com">E-posta: humanoidproject01@gmail.com</a>
+          <a class="contact-btn-secondary" href="https://github.com/Semihzx" target="_blank" rel="noopener noreferrer">GitHub Profili: github.com/Semihzx</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      Human Project · Portföy ve Örnek Tasarım / Demo Vitrini · <a href="mailto:humanoidproject01@gmail.com" style="font-weight:700;color:var(--accent-dark);">humanoidproject01@gmail.com</a>
+    </div>
+  </footer>
+
+  <script>
+    function temayiUygula(tema) {
+      const secilen = tema === "kehribar" ? "kehribar" : "lacivert";
+      document.documentElement.setAttribute("data-theme", secilen);
+      document.getElementById("btn-theme-lacivert").setAttribute("aria-pressed", String(secilen === "lacivert"));
+      document.getElementById("btn-theme-kehribar").setAttribute("aria-pressed", String(secilen === "kehribar"));
+    }
+
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("tema") === "kehribar") {
+      temayiUygula("kehribar");
+    }
+
+    document.getElementById("btn-theme-lacivert").addEventListener("click", () => temayiUygula("lacivert"));
+    document.getElementById("btn-theme-kehribar").addEventListener("click", () => temayiUygula("kehribar"));
+  </script>
+</body>
+</html>
