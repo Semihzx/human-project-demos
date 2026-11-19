@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="lacivert">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow">
+  <title id="doc-title">Özlü Otomotiv | İzmit Oto Servis (Özel) | Oto Servis — Kocaeli Ön İzleme</title>
+  <meta name="description" id="doc-desc" content="Bu sayfa Özlü Otomotiv | İzmit Oto Servis (Özel) (Oto Servis, Kocaeli) için hazırlanmış ücretsiz bir ön izlemedir. Hızlı web sitesi ve iOS/Android mobil uygulama taslağı." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' rx='4' fill='%23047857'/></svg>" />
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --surface-soft: #f1f5f9;
+      --ink: #0f172a;
+      --muted: #475569;
+      --border: #e2e8f0;
+      --primary: #0f172a;
+      --primary-contrast: #ffffff;
+      --accent: #047857;
+      --accent-dark: #065f46;
+      --accent-soft: #ecfdf5;
+      --accent-border: #a7f3d0;
+      --hero-grad: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      --radius: 16px;
+      --shadow: 0 10px 28px rgba(15, 23, 42, 0.08);
+      --sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    }
+
+    html[data-theme="kehribar"] {
+      --bg: #fafaf9;
+      --surface: #ffffff;
+      --surface-soft: #f5f5f4;
+      --ink: #18181b;
+      --muted: #52525b;
+      --border: #e4e4e7;
+      --primary: #18181b;
+      --primary-contrast: #ffffff;
+      --accent: #b45309;
+      --accent-dark: #92400e;
+      --accent-soft: #fffbeb;
+      --accent-border: #fde68a;
+      --hero-grad: linear-gradient(135deg, #18181b 0%, #292524 100%);
+      --shadow: 0 10px 28px rgba(24, 24, 27, 0.08);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button, input, select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 18px;
+    }
+
+    /* Üst Ön İzleme Bildirimi & Tema Çubuğu */
+    .top-bar {
+      background: var(--primary);
+      color: var(--primary-contrast);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+      font-size: 0.875rem;
+    }
+
+    .top-bar-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px 16px;
+      padding: 10px 0;
+    }
+
+    .notice-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      min-width: 0;
+    }
+
+    .brand-line {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+    }
+
+    .notice-sub {
+      font-size: 0.79rem;
+      color: #e2e8f0;
+      padding-left: 20px;
+    }
+
+    .status-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #10b981;
+      flex-shrink: 0;
+    }
+
+    .top-controls {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .theme-btn {
+      background: rgba(255, 255, 255, 0.1);
+      color: #f8fafc;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      border-radius: 999px;
+      padding: 7px 14px;
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+
+    .theme-btn[aria-pressed="true"] {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #ffffff;
+    }
+
+    /* Navigasyon */
+    .site-nav {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 0;
+    }
+
+    .nav-logo {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--primary);
+      letter-spacing: -0.01em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    .nav-cta {
+      background: var(--accent);
+      color: #ffffff;
+      padding: 10px 16px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      white-space: nowrap;
+    }
+
+    /* Hero Bölümü */
+    .hero {
+      padding: 28px 0 24px;
+    }
+
+    .hero-panel {
+      background: var(--hero-grad);
+      color: #ffffff;
+      border-radius: var(--radius);
+      padding: 32px;
+      box-shadow: var(--shadow);
+      display: grid;
+      grid-template-columns: 1.25fr 0.9fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .cat-pill {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      color: #ffffff;
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .hero h1 {
+      margin: 0 0 12px;
+      font-size: clamp(1.6rem, 3.1vw, 2.35rem);
+      line-height: 1.18;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-desc {
+      margin: 0 0 20px;
+      color: #e2e8f0;
+      font-size: 1.02rem;
+      max-width: 58ch;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 18px;
+      font-size: 0.9rem;
+      color: #e2e8f0;
+      margin-bottom: 22px;
+    }
+
+    .hero-meta span {
+      display: inline-flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn-accent {
+      background: var(--accent);
+      color: #ffffff;
+      border: none;
+      border-radius: 10px;
+      padding: 12px 20px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn-ghost {
+      background: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      border-radius: 10px;
+      padding: 12px 18px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Telefon Mockup Kartı */
+    .phone-card {
+      background: #ffffff;
+      color: var(--ink);
+      border-radius: 22px;
+      padding: 18px;
+      border: 4px solid rgba(255, 255, 255, 0.22);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+    }
+
+    .phone-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--muted);
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 12px;
+    }
+
+    .phone-app-head {
+      background: var(--accent-soft);
+      border: 1px solid var(--accent-border);
+      border-radius: 12px;
+      padding: 12px;
+      margin-bottom: 12px;
+    }
+
+    .phone-app-title {
+      font-weight: 800;
+      font-size: 0.98rem;
+      color: var(--primary);
+    }
+
+    .phone-app-sub {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .phone-select-label {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--muted);
+      margin-bottom: 5px;
+    }
+
+    .phone-select {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 9px 10px;
+      background: var(--surface-soft);
+      color: var(--ink);
+      font-size: 0.86rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .phone-slots {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .slot-chip {
+      border: 1px solid var(--border);
+      background: var(--surface-soft);
+      color: var(--ink);
+      border-radius: 8px;
+      padding: 9px 6px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .slot-chip[aria-pressed="true"] {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #ffffff;
+    }
+
+    .phone-submit {
+      width: 100%;
+      background: var(--primary);
+      color: #ffffff;
+      border: none;
+      border-radius: 10px;
+      padding: 11px 14px;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .phone-feedback {
+      margin-top: 8px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--accent-dark);
+      min-height: 1.2em;
+    }
+
+    /* Bölüm Ortak */
+    .section {
+      padding: 20px 0;
+    }
+
+    .section-head {
+      margin-bottom: 16px;
+    }
+
+    .section-head h2 {
+      margin: 0 0 6px;
+      font-size: 1.4rem;
+      color: var(--primary);
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+    }
+
+    .card-badge {
+      display: inline-block;
+      background: var(--accent-soft);
+      color: var(--accent-dark);
+      border: 1px solid var(--accent-border);
+      border-radius: 8px;
+      padding: 4px 10px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 1.05rem;
+      color: var(--primary);
+    }
+
+    .card p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    /* İletişim ve Adres Kartı */
+    .contact-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .contact-row {
+      background: var(--surface-soft);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 14px;
+    }
+
+    .contact-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .contact-value {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-top: 2px;
+      word-break: break-word;
+    }
+
+    /* Şablon Değişken Uyarlama Paneli */
+    .customizer {
+      background: var(--surface);
+      border: 1px dashed var(--accent);
+      border-radius: var(--radius);
+      padding: 20px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .field-full {
+      grid-column: 1 / -1;
+    }
+
+    .field label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 5px;
+    }
+
+    .field input, .field select {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 12px;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 0.92rem;
+    }
+
+    .footer {
+      padding: 28px 0 36px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.86rem;
+      border-top: 1px solid var(--border);
+      margin-top: 24px;
+    }
+
+    .hero-panel > *,
+    .grid-3 > *,
+    .grid-2 > *,
+    .form-grid > * {
+      min-width: 0;
+    }
+
+    code {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    @media (max-width: 860px) {
+      .hero-panel,
+      .grid-3,
+      .grid-2,
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-panel {
+        padding: 22px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-bar">
+    <div class="container top-bar-inner">
+      <div class="notice-wrap">
+        <div class="brand-line">
+          <span class="status-dot" aria-hidden="true"></span>
+          <span>Bu sayfa Özlü Otomotiv | İzmit Oto Servis (Özel) için hazırlanmış ücretsiz bir ön izlemedir</span>
+        </div>
+        <div class="notice-sub">Kayıtlı İşletme: Bu sayfa Özlü Otomotiv | İzmit Oto Servis (Özel) (İzmit, Kocaeli) için hazırlanmış ücretsiz bir ön izlemedir · Kocaeli</div>
+      </div>
+      <div class="top-controls" role="group" aria-label="Renk Teması Seçimi">
+        <button type="button" class="theme-btn" id="btn-theme-lacivert" aria-pressed="true">Tema 1: Lacivert &amp; Zümrüt</button>
+        <button type="button" class="theme-btn" id="btn-theme-kehribar" aria-pressed="false">Tema 2: Antrasit &amp; Kehribar</button>
+      </div>
+    </div>
+  </div>
+
+  <header class="site-nav">
+    <div class="container nav-inner">
+      <a href="#ust" class="nav-logo" data-var="isletmeAdi">Özlü Otomotiv | İzmit Oto Servis (Özel)</a>
+      <nav class="nav-links" aria-label="Sayfa Bölümleri">
+        <a href="#hizmetler">Hizmetler</a>
+        <a href="#mobil-uygulama">Mobil Uygulama</a>
+        <a href="#iletisim">Adres &amp; İletişim</a>
+        <a href="#uyarla">Ön İzleme Bilgileri</a>
+      </nav>
+      <a href="tel:05304134520" class="nav-cta" id="nav-call-btn">Hemen Ara</a>
+    </div>
+  </header>
+
+  <main class="container" id="ust">
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="hero-panel">
+        <div>
+          <span class="cat-pill" data-var="kategori">Oto Servis</span>
+          <h1 id="hero-heading"><span data-var="isletmeAdi">Özlü Otomotiv | İzmit Oto Servis (Özel)</span> — Aracınız İçin Güvenilir Bakım ve Mobil Servis Randevusu</h1>
+          <p class="hero-desc" id="hero-summary">İzmit ve Kocaeli genelinde araç bakım veya onarım arayan sürücüler servisinize saniyeler içinde ulaşsın. Tek dokunuşla arama, Sanayi Mahallesi yol tarifi ve iOS/Android servis randevu deneyimi tek pakette hazırlandı.</p>
+          <div class="hero-meta">
+            <span>Şehir: <strong data-var="sehir">Kocaeli</strong></span>
+            <span>Telefon: <strong data-var="telefon">0530 413 45 20</strong></span>
+            <span>Konum: <strong data-var="adres">Sanayi Mah. Fevzi Çakmak Cad. No:98/B, İzmit, Kocaeli</strong></span>
+          </div>
+          <div class="hero-actions">
+            <a class="btn-accent" id="hero-tel-link" href="tel:05304134520">Telefonla Ulaş (<span data-var="telefon">0530 413 45 20</span>)</a>
+            <a class="btn-ghost" href="#mobil-uygulama">Mobil Uygulamayı Gör</a>
+          </div>
+        </div>
+
+        <aside class="phone-card" aria-label="iOS ve Android Mobil Uygulama Ön İzlemesi">
+          <div class="phone-top">
+            <span>iOS / Android Ön İzleme</span>
+            <span>Canlı Taslak</span>
+          </div>
+          <div class="phone-app-head">
+            <div class="phone-app-title" data-var="isletmeAdi">Özlü Otomotiv | İzmit Oto Servis (Özel)</div>
+            <div class="phone-app-sub"><span data-var="kategori">Oto Servis</span> · <span data-var="sehir">Kocaeli</span></div>
+          </div>
+          <label class="phone-select-label" for="demo-service-select">Servis İşlemi (Örnek)</label>
+          <select id="demo-service-select" class="phone-select">
+            <option value="Periyodik Bakım &amp; Yağ Değişimi">Periyodik Bakım &amp; Yağ Değişimi</option>
+            <option value="Mekanik Arıza Tespit &amp; Onarım">Mekanik Arıza Tespit &amp; Onarım</option>
+            <option value="Klima Bakımı &amp; Mevsimsel Kontrol">Klima Bakımı &amp; Mevsimsel Kontrol</option>
+          </select>
+          <div class="phone-slots" role="group" aria-label="Saat Seçimi">
+            <button type="button" class="slot-chip" aria-pressed="true">10:30</button>
+            <button type="button" class="slot-chip" aria-pressed="false">14:00</button>
+            <button type="button" class="slot-chip" aria-pressed="false">17:30</button>
+          </div>
+          <button type="button" class="phone-submit" id="demo-book-btn">Seçili Saate Servis Randevusu Oluştur</button>
+          <div class="phone-feedback" id="demo-feedback" role="status" aria-live="polite"></div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="hizmetler" aria-labelledby="services-heading">
+      <div class="section-head">
+        <h2 id="services-heading">Oto Servis Hizmetleri &amp; Dijital Modüller</h2>
+        <p>İzmit, Kocaeli sürücülerinin servis kapsamınızı inceleyip hızlıca randevu oluşturması için hazırlanan oto servis ve mobil modüller.</p>
+      </div>
+      <div class="grid-3">
+        <article class="card">
+          <span class="card-badge">Servis Hizmeti</span>
+          <h3 id="svc-1-title">Periyodik Araç Bakımı &amp; Yağ Değişimi</h3>
+          <p id="svc-1-desc">Motor yağı, filtre değişimleri, fren kontrolleri ve kilometre bazlı düzenli bakım işlemleriniz için net bilgilendirme alanı.</p>
+        </article>
+        <article class="card">
+          <span class="card-badge">Servis Hizmeti</span>
+          <h3 id="svc-2-title">Mekanik Arıza Tespit &amp; Onarım</h3>
+          <p id="svc-2-desc">Bilgisayarlı arıza tespiti, ön takım, süspansiyon ve motor mekanik onarımlarını arayan sürücülerin doğrudan servisinize ulaşmasını sağlar.</p>
+        </article>
+        <article class="card">
+          <span class="card-badge">Servis Hizmeti</span>
+          <h3 id="svc-3-title">Klima Bakımı &amp; Mevsimsel Kontrol</h3>
+          <p id="svc-3-desc">Yaz ve kış öncesi klima gazı, akü, antifriz ve genel güvenlik kontrolleri için sürücülere yönelik mevsimsel servis tanıtımı.</p>
+        </article>
+        <article class="card">
+          <span class="card-badge">Dijital Modül</span>
+          <h3 id="svc-4-title">Online Servis Randevu Planlama</h3>
+          <p id="svc-4-desc">Sürücülerin servise gelmeden önce uygun saat aralığını seçerek ön randevu oluşturabileceği mobil uyumlu talep akışı.</p>
+        </article>
+        <article class="card">
+          <span class="card-badge">Dijital Modül</span>
+          <h3 id="svc-5-title">Tek Tıkla Yol Yardım &amp; Konum Tarifi</h3>
+          <p id="svc-5-desc">Yolda kalan veya Sanayi Mahallesi servis noktanızı arayan müşterilerin tek dokunuşla telefon açmasını ve adrese ulaşmasını sağlar.</p>
+        </article>
+        <article class="card">
+          <span class="card-badge">iOS &amp; Android</span>
+          <h3 id="svc-6-title">iOS &amp; Android Araç Bakım Geçmişi Uygulaması</h3>
+          <p id="svc-6-desc">Müşterilerinizin araç bakım tarihlerini takip edebildiği, sonraki periyodik kontrol için hatırlatma alabildiği servis uygulaması.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="mobil-uygulama" aria-labelledby="app-heading">
+      <div class="grid-2">
+        <article class="card">
+          <span class="card-badge">Web + Mobil Birlikte</span>
+          <h2 id="app-heading" style="margin-top:0;font-size:1.3rem;">Servisiniz İçin Neden Hem Web Sitesi Hem Mobil Uygulama?</h2>
+          <p style="margin-bottom:12px;">Yolda veya bakım zamanında oto servis arayan sürücüler Google üzerinde doğrudan telefon ve net adres bilgisi görmek ister. Düzenli müşterileriniz ise iOS/Android uygulamanız üzerinden bakım geçmişini görüp kolayca randevu alır.</p>
+          <p>Sade ve hızlı açılan bu ön izleme tasarımı, İzmit Sanayi Mahallesi konumunuzu ve özel servis hizmetlerinizi her telefon ekranında net biçimde sunar.</p>
+        </article>
+
+        <article class="card" id="iletisim">
+          <span class="card-badge">Kayıtlı İşletme Bilgileri</span>
+          <h2 style="margin-top:0;font-size:1.3rem;">İletişim ve Açık Adres</h2>
+          <div class="contact-list">
+            <div class="contact-row">
+              <div class="contact-label">İşletme Adı</div>
+              <div class="contact-value">Özlü Otomotiv | İzmit Oto Servis (Özel) (İzmit, Kocaeli)</div>
+            </div>
+            <div class="contact-row">
+              <div class="contact-label">Şehir</div>
+              <div class="contact-value" data-var="sehir">Kocaeli</div>
+            </div>
+            <div class="contact-row">
+              <div class="contact-label">Kategori</div>
+              <div class="contact-value" data-var="kategori">Oto Servis</div>
+            </div>
+            <div class="contact-row">
+              <div class="contact-label">Telefon</div>
+              <div class="contact-value"><a id="contact-tel-link" href="tel:05304134520" data-var="telefon">0530 413 45 20</a></div>
+            </div>
+            <div class="contact-row">
+              <div class="contact-label">Adres</div>
+              <div class="contact-value" data-var="adres">Sanayi Mah. Fevzi Çakmak Cad. No:98/B, İzmit, Kocaeli</div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="uyarla" aria-labelledby="customizer-heading">
+      <div class="customizer">
+        <div class="section-head" style="margin-bottom:8px;">
+          <h2 id="customizer-heading">İşletme Bilgilerini Canlı Düzenle &amp; Test Et</h2>
+          <p>İsteğe bağlı olarak aşağıdaki alanları güncelleyebilir veya URL parametreleriyle (<code>?ad=...&amp;sehir=...&amp;kategori=...&amp;telefon=...&amp;adres=...&amp;tema=kehribar</code>) farklı yerleşim seçeneklerini inceleyebilirsiniz.</p>
+        </div>
+        <div class="form-grid">
+          <div class="field">
+            <label for="inp-ad">İşletme Adı</label>
+            <input id="inp-ad" type="text" value="Özlü Otomotiv | İzmit Oto Servis (Özel)" />
+          </div>
+          <div class="field">
+            <label for="inp-sehir">Şehir</label>
+            <input id="inp-sehir" type="text" value="Kocaeli" />
+          </div>
+          <div class="field">
+            <label for="inp-kat">Kategori</label>
+            <select id="inp-kat">
+              <option value="Kuaför / Güzellik">Kuaför / Güzellik</option>
+              <option value="Diş Hekimi">Diş Hekimi</option>
+              <option value="Pastane">Pastane</option>
+              <option value="Oto Servis" selected>Oto Servis</option>
+              <option value="Nakliyat">Nakliyat</option>
+              <option value="Kafe &amp; Restoran">Kafe &amp; Restoran</option>
+              <option value="Veteriner Kliniği">Veteriner Kliniği</option>
+              <option value="Spor Salonu &amp; Fitness">Spor Salonu &amp; Fitness</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="inp-tel">Telefon</label>
+            <input id="inp-tel" type="tel" value="0530 413 45 20" />
+          </div>
+          <div class="field field-full">
+            <label for="inp-adr">Adres</label>
+            <input id="inp-adr" type="text" value="Sanayi Mah. Fevzi Çakmak Cad. No:98/B, İzmit, Kocaeli" />
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <span data-var="isletmeAdi">Özlü Otomotiv | İzmit Oto Servis (Özel)</span> · <span data-var="sehir">Kocaeli</span> · <span data-var="kategori">Oto Servis</span> · Ücretsiz Ön İzleme (Human Project)
+    </div>
+  </footer>
+
+  <script>
+    const DEMO_DEGISKENLERI = {
+      isletmeAdi: "Özlü Otomotiv | İzmit Oto Servis (Özel)",
+      kayitAdi: "Özlü Otomotiv | İzmit Oto Servis (Özel) (İzmit, Kocaeli)",
+      sehir: "Kocaeli",
+      kategori: "Oto Servis",
+      telefon: "0530 413 45 20",
+      adres: "Sanayi Mah. Fevzi Çakmak Cad. No:98/B, İzmit, Kocaeli",
+      tema: "lacivert"
+    };
+
+    const VARSAYILANLAR = {
+      isletmeAdi: "Özlü Otomotiv | İzmit Oto Servis (Özel)",
+      kayitAdi: "Özlü Otomotiv | İzmit Oto Servis (Özel) (İzmit, Kocaeli)",
+      sehir: "Kocaeli",
+      kategori: "Oto Servis",
+      telefon: "0530 413 45 20",
+      adres: "Sanayi Mah. Fevzi Çakmak Cad. No:98/B, İzmit, Kocaeli"
+    };
+
+    const KATEGORI_METINLERI = {
+      "Oto Servis": ["Periyodik Araç Bakımı & Yağ Değişimi","Mekanik Arıza Tespit & Onarım","Klima Bakımı & Mevsimsel Kontrol"],
+      "Kuaför": ["Saç Kesim & Şekillendirme", "Renklendirme & Bakım Uygulamaları", "Gelin Başı & Özel Gün Hazırlığı"],
+      "Diş": ["Ağız ve Diş Muayenesi & Tedavi Planlama", "Estetik Diş Hekimliği & Gülüş Tasarımı", "Koruyucu Diş Sağlığı & Periyodik Kontrol"],
+      "Pastane": ["Özel Gün & Yaş Pasta Tasarımı", "Günlük Taze Tatlı & Börek Çeşitleri", "Kurumsal & Toplu Davet Siparişleri"],
+      "Oto": ["Periyodik Araç Bakımı & Yağ Değişimi", "Mekanik Arıza Tespit & Onarım", "Klima Bakımı & Mevsimsel Kontrol"],
+      "Nakliyat": ["Evden Eve & Asansörlü Taşımacılık", "Şehir İçi & Şehirler Arası Nakliyat", "Ambalajlama & Mobilya Montaj Desteği"]
+    };
+
+    function temizDeger(ham, yedek) {
+      if (!ham || /\{\{[A-Z_]+\}\}/.test(ham)) return yedek;
+      return ham.trim();
+    }
+
+    function temayiUygula(secim) {
+      const secilen = secim === "kehribar" ? "kehribar" : "lacivert";
+      document.documentElement.setAttribute("data-theme", secilen);
+      document.getElementById("btn-theme-lacivert").setAttribute("aria-pressed", String(secilen === "lacivert"));
+      document.getElementById("btn-theme-kehribar").setAttribute("aria-pressed", String(secilen === "kehribar"));
+    }
+
+    function degiskenleriBas(veri) {
+      document.querySelectorAll("[data-var]").forEach(el => {
+        const key = el.getAttribute("data-var");
+        if (veri[key]) el.textContent = veri[key];
+      });
+      const temizTel = veri.telefon.replace(/[^0-9+]/g, "");
+      const telHref = "tel:" + (temizTel || veri.telefon);
+      document.getElementById("hero-tel-link").setAttribute("href", telHref);
+      document.getElementById("contact-tel-link").setAttribute("href", telHref);
+      document.getElementById("nav-call-btn").setAttribute("href", telHref);
+      document.title = veri.isletmeAdi + " | " + veri.kategori + " — " + veri.sehir + " Ön İzleme";
+
+      const katAnahtar = Object.keys(KATEGORI_METINLERI).find(k =>
+        veri.kategori.toLowerCase().includes(k.toLowerCase())
+      );
+      if (katAnahtar) {
+        const basliklar = KATEGORI_METINLERI[katAnahtar];
+        document.getElementById("svc-1-title").textContent = basliklar[0];
+        document.getElementById("svc-2-title").textContent = basliklar[1];
+        document.getElementById("svc-3-title").textContent = basliklar[2];
+      }
+    }
+
+    const params = new URLSearchParams(window.location.search);
+    const aktifVeri = {
+      isletmeAdi: params.get("ad") || temizDeger(DEMO_DEGISKENLERI.isletmeAdi, VARSAYILANLAR.isletmeAdi),
+      sehir: params.get("sehir") || temizDeger(DEMO_DEGISKENLERI.sehir, VARSAYILANLAR.sehir),
+      kategori: params.get("kategori") || temizDeger(DEMO_DEGISKENLERI.kategori, VARSAYILANLAR.kategori),
+      telefon: params.get("telefon") || temizDeger(DEMO_DEGISKENLERI.telefon, VARSAYILANLAR.telefon),
+      adres: params.get("adres") || temizDeger(DEMO_DEGISKENLERI.adres, VARSAYILANLAR.adres),
+      tema: params.get("tema") || DEMO_DEGISKENLERI.tema
+    };
+
+    document.getElementById("inp-ad").value = aktifVeri.isletmeAdi;
+    document.getElementById("inp-sehir").value = aktifVeri.sehir;
+    document.getElementById("inp-kat").value = aktifVeri.kategori;
+    document.getElementById("inp-tel").value = aktifVeri.telefon;
+    document.getElementById("inp-adr").value = aktifVeri.adres;
+    temayiUygula(aktifVeri.tema);
+    degiskenleriBas(aktifVeri);
+
+    document.getElementById("btn-theme-lacivert").addEventListener("click", () => temayiUygula("lacivert"));
+    document.getElementById("btn-theme-kehribar").addEventListener("click", () => temayiUygula("kehribar"));
+
+    ["inp-ad", "inp-sehir", "inp-kat", "inp-tel", "inp-adr"].forEach(id => {
+      document.getElementById(id).addEventListener("input", () => {
+        aktifVeri.isletmeAdi = document.getElementById("inp-ad").value.trim() || VARSAYILANLAR.isletmeAdi;
+        aktifVeri.sehir = document.getElementById("inp-sehir").value.trim() || VARSAYILANLAR.sehir;
+        aktifVeri.kategori = document.getElementById("inp-kat").value;
+        aktifVeri.telefon = document.getElementById("inp-tel").value.trim() || VARSAYILANLAR.telefon;
+        aktifVeri.adres = document.getElementById("inp-adr").value.trim() || VARSAYILANLAR.adres;
+        degiskenleriBas(aktifVeri);
+      });
+    });
+
+    let seciliSaat = "10:30";
+    document.querySelectorAll(".slot-chip").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".slot-chip").forEach(b => b.setAttribute("aria-pressed", "false"));
+        btn.setAttribute("aria-pressed", "true");
+        seciliSaat = btn.textContent.trim();
+      });
+    });
+
+    document.getElementById("demo-book-btn").addEventListener("click", () => {
+      const islem = document.getElementById("demo-service-select").value;
+      document.getElementById("demo-feedback").textContent =
+        aktifVeri.isletmeAdi + " — " + islem + " için saat " + seciliSaat + " " + "servis randevusu ön talep simülasyonu oluşturuldu.";
+    });
+  </script>
+</body>
+</html>
